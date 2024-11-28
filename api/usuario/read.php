@@ -1,6 +1,5 @@
 <?php
-include_once '../../cors.php'; // Inclui o arquivo de configuração CORS
-
+include_once '../../cors.php';
 include_once '../../config.php';
 include_once '../../classes/Database.php';
 include_once '../../classes/Usuario.php';
@@ -13,7 +12,7 @@ $usuario = new Usuario($db);
 $stmt = $usuario->read();
 $num = $stmt->rowCount();
 
-if ($num > 0) {
+if($num > 0) {
     $usuarios_arr = array();
     $usuarios_arr["records"] = array();
 
@@ -29,16 +28,17 @@ if ($num > 0) {
             "rua" => $rua,
             "numero" => $numero,
             "cidade" => $cidade,
-            "estado" => $estado
+            "estado" => $estado,
+            "data_criacao" => $data_criacao
         );
 
         array_push($usuarios_arr["records"], $usuario_item);
     }
 
+    http_response_code(200);
     echo json_encode($usuarios_arr);
 } else {
-    echo json_encode(
-        array("message" => "Nenhum usuário encontrado.")
-    );
+    http_response_code(404);
+    echo json_encode(array("message" => "Nenhum usuário encontrado."));
 }
 ?>

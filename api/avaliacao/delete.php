@@ -2,22 +2,22 @@
 include_once '../../cors.php';
 include_once '../../config.php';
 include_once '../../classes/Database.php';
-include_once '../../classes/Usuario.php';
+include_once '../../classes/Avaliacao.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$usuario = new Usuario($db);
+$avaliacao = new Avaliacao($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$usuario->id_usuario = $data->id_usuario;
+$avaliacao->id_avaliacao = $data->id_avaliacao;
 
-if($usuario->delete_address()) {
+if($avaliacao->delete()) {
     http_response_code(200);
-    echo json_encode(array("message" => "Endereço deletado com sucesso."));
+    echo json_encode(array("message" => "Avaliação deletada com sucesso."));
 } else {
     http_response_code(503);
-    echo json_encode(array("message" => "Erro ao deletar endereço."));
+    echo json_encode(array("message" => "Erro ao deletar avaliação."));
 }
 ?>

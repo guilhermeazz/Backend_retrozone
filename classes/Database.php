@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db_name = "retrozone";
-    private $username = "seu_usuario";
-    private $password = "sua_senha";
+    private $host = 'localhost'; // Substitua pelo host do seu banco de dados, se necessário
+    private $db_name = 'retrozone'; // Nome do banco de dados
+    private $username = 'root'; // Substitua pelo seu nome de usuário do banco de dados
+    private $password = ''; // Substitua pela sua senha do banco de dados
     public $conn;
 
     public function getConnection() {
