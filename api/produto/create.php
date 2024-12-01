@@ -13,7 +13,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 $produto->nome = $data->nome;
 $produto->descricao = isset($data->descricao) ? $data->descricao : null;
-$produto->imagem = isset($data->imagem) ? $data->imagem : null;
+$produto->imagem = file_get_contents($_FILES['imagem']['tmp_name']);
 $produto->valor = $data->valor;
 $produto->qtd_estoque = isset($data->qtd_estoque) ? $data->qtd_estoque : 0;
 $produto->promocao = isset($data->promocao) ? $data->promocao : false;

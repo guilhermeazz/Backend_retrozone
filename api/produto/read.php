@@ -23,7 +23,7 @@ if($num > 0) {
             "id_produto" => $id_produto,
             "nome" => $nome,
             "descricao" => html_entity_decode($descricao),
-            "imagem" => $imagem,
+            "imagem" => base64_encode($imagem),
             "valor" => $valor,
             "qtd_estoque" => $qtd_estoque,
             "promocao" => $promocao,

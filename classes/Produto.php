@@ -33,7 +33,6 @@ class Produto {
 
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
-        $this->imagem = htmlspecialchars(strip_tags($this->imagem));
         $this->valor = htmlspecialchars(strip_tags($this->valor));
         $this->qtd_estoque = htmlspecialchars(strip_tags($this->qtd_estoque));
         $this->promocao = htmlspecialchars(strip_tags($this->promocao));
@@ -42,7 +41,7 @@ class Produto {
 
         $stmt->bindParam(":nome", $this->nome);
         $stmt->bindParam(":descricao", $this->descricao);
-        $stmt->bindParam(":imagem", $this->imagem);
+        $stmt->bindParam(":imagem", $this->imagem, PDO::PARAM_LOB);
         $stmt->bindParam(":valor", $this->valor);
         $stmt->bindParam(":qtd_estoque", $this->qtd_estoque);
         $stmt->bindParam(":promocao", $this->promocao);
@@ -101,7 +100,6 @@ class Produto {
 
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
-        $this->imagem = htmlspecialchars(strip_tags($this->imagem));
         $this->valor = htmlspecialchars(strip_tags($this->valor));
         $this->qtd_estoque = htmlspecialchars(strip_tags($this->qtd_estoque));
         $this->promocao = htmlspecialchars(strip_tags($this->promocao));
@@ -111,7 +109,7 @@ class Produto {
 
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':descricao', $this->descricao);
-        $stmt->bindParam(':imagem', $this->imagem);
+        $stmt->bindParam(':imagem', $this->imagem, PDO::PARAM_LOB);
         $stmt->bindParam(':valor', $this->valor);
         $stmt->bindParam(':qtd_estoque', $this->qtd_estoque);
         $stmt->bindParam(':promocao', $this->promocao);
