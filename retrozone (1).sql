@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/11/2024 às 20:33
+-- Tempo de geração: 01/12/2024 às 05:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -87,7 +87,7 @@ CREATE TABLE `produto` (
   `id_produto` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `imagem` varchar(255) DEFAULT NULL,
+  `imagem` longblob DEFAULT NULL,
   `valor` decimal(10,2) NOT NULL,
   `qtd_estoque` int(11) DEFAULT 0,
   `promocao` tinyint(1) DEFAULT 0,
@@ -115,6 +115,18 @@ CREATE TABLE `usuario` (
   `estado` varchar(2) DEFAULT NULL,
   `data_criacao` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome_completo`, `email`, `senha`, `telefone`, `cep`, `rua`, `numero`, `cidade`, `estado`, `data_criacao`) VALUES
+(1, 'Guilherme Albuquerque Zaparolli', 'guialbuzapa@gmail.com', '$2y$10$1EzC0a/wEwUyPAUz8s2hbepbF2agO96yManov6bu4R94MFEWZiruW', '11996260696', '', '', '', '', '', '2024-11-28 19:36:31'),
+(4, 'Teste de Usuário', 'teste@exemplo.com', '$2y$10$0KAD1qg4eVIkgWvCdgFmguZeBMBxCh4WSm6l8A..1K4FkzJlV7omC', '123456789', '', '', '', '', '', '2024-12-01 02:50:17'),
+(9, 'Teste de Usuário', 'ttste@exemplo.com', '$2y$10$OHu1b4QeDD3MqeZufPd20e314M60OdksWty5XcLQ3u3.41hsmDveC', '123456789', '', '', '', '', '', '2024-12-01 02:53:47'),
+(11, 'Guilherme Albuquerque Zaparolli', 'testeapa@gmail.com', '$2y$10$sHiESTCioMhOuOLUA9Kv0emdWM/sYCi7m6cHbKQMk7FhJe2g3E3aC', '(11) 99626-0696', '', '', '', '', '', '2024-12-01 02:54:44'),
+(12, 'Guilherme Albuquerque Zaparolli', 'guialbuzappa@gmail.com', '$2y$10$AA8SvFqSuOBoSGsT0vU2Teeu6vNWQg9KM6Gq.FTTT/xaiks9D.EvG', '11996260698', '', '', '', '', '', '2024-12-01 03:21:20'),
+(13, 'Guilherme Albuquerque Zaparolli', 'guialbuzapaa@gmail.com', '$2y$10$7R54lda7ARPsSWcLclnoZeFT5lu2YoOqENAvkDG2wxJ6OkhGOMNMC', '11996260686', '', '', '', '', '', '2024-12-01 03:23:06');
 
 --
 -- Índices para tabelas despejadas
@@ -201,7 +213,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restrições para tabelas despejadas
