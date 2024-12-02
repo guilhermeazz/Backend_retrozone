@@ -9,17 +9,32 @@ $db = $database->getConnection();
 
 $promocao = new Promocao($db);
 
-$data = json_decode(file_get_contents("php://input"));
+try {
+    // Verifique se há um arquivo enviado
+    if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+        $promocao->imagem = file_get_contents($_FILES['imagem']['tmp_name']);
+    } else {
+        throw new Exception('Erro no upload da imagem.');
+    }
 
-$promocao->descricao = $data->descricao;
-$promocao->imagem = file_get_contents($_FILES['imagem']['tmp_name']);
-$promocao->link = $data->link;
+    $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : null;
+    $link = isset($_POST['link']) ? $_POST['link'] : null;
 
-if($promocao->create()) {
-    http_response_code(201);
-    echo json_encode(array("message" => "Promoção criada com sucesso."));
-} else {
-    http_response_code(503);
-    echo json_encode(array("message" => "Erro ao criar promoção."));
+    if ($descricao && $link && $promocao->imagem) {
+        $promocao->descricao = $descricao;
+        $promocao->link = $link;
+
+        if($promocao->create()) {
+            http_response_code(201);
+            echo json_encode(array("message" => "Promoção criada com sucesso."));
+        } else {
+            throw new Exception('Erro ao criar promoção.');
+        }
+    } else {
+        throw new Exception('Dados incompletos.');
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(array("message" => $e->getMessage()));
 }
 ?>
