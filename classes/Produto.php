@@ -83,6 +83,24 @@ class Produto {
         $this->plataforma = $row['plataforma'];
         $this->data_criacao = $row['data_criacao'];
     }
+    
+    // Método para leitura por plataforma
+    public function readByPlatform($plataforma) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE plataforma = :plataforma";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':plataforma', $plataforma);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    // Método para leitura por categoria
+    public function readByCategory($categoria) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE categoria = :categoria";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':categoria', $categoria);
+        $stmt->execute();
+        return $stmt;
+    }
 
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET 
